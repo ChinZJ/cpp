@@ -1,0 +1,72 @@
+# Consistent code formatting enforced automatically.
+#
+# Run: clang-format -i src/*.cpp include/**/*.hpp
+
+Language: Cpp
+Standard: c++20
+
+# Base style: start from a well-known style and customize
+BasedOnStyle: Google
+
+# Indentation
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+IndentCaseLabels: true
+NamespaceIndentation: None
+
+# Braces
+BreakBeforeBraces: Attach
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Empty
+
+# Line length
+ColumnLimit: 100
+
+# Include sorting
+SortIncludes: CaseSensitive
+IncludeBlocks: Regroup
+IncludeCategories:
+  # Project headers first, then system
+  - Regex: '^"'
+    Priority: 1
+  - Regex: '^<'
+    Priority: 2
+
+# Pointer/Reference alignment: modern C++ style (type-attached)
+# int* ptr  not  int *ptr
+PointerAlignment: Left
+ReferenceAlignment: Left
+
+# Spaces
+SpaceAfterCStyleCast: false
+SpaceAfterTemplateKeyword: true
+SpaceBeforeParens: ControlStatements
+SpacesInAngles: Never
+
+# Alignment
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignOperands: Align
+AlignTrailingComments: true
+
+# Penalties (influence where line breaks occur)
+PenaltyBreakComment: 300
+PenaltyBreakFirstLessLess: 120
+PenaltyBreakString: 1000
+PenaltyExcessCharacter: 1000000
+PenaltyReturnTypeOnItsOwnLine: 200
+
+# Modern C++ specific
+AllowAllParametersOfDeclarationOnNextLine: true
+BinPackArguments: true
+BinPackParameters: true
+
+# Lambda formatting
+AllowShortLambdasOnASingleLine: Inline
+
+# Access modifiers
+AccessModifierOffset: -4

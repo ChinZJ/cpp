@@ -1,0 +1,81 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 20,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "dev-debug",
+            "displayName": "Dev Debug (GCC, C++20, Sanitizers ON)",
+            "description": "Default development preset with ASan + UBSan",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_COMPILER": "g++",
+                "ENABLE_SANITIZERS": "ON",
+                "ENABLE_CLANG_TIDY": "OFF"
+            }
+        },
+        {
+            "name": "dev-release",
+            "displayName": "Dev Release (GCC, C++20, Sanitizers OFF)",
+            "description": "For benchmarking (no sanitizer overhead)",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_COMPILER": "g++",
+                "ENABLE_SANITIZERS": "OFF",
+                "ENABLE_CLANG_TIDY": "OFF"
+            }
+        },
+        {
+            "name": "dev-tidy",
+            "displayName": "Dev Debug + clang-tidy",
+            "description": "Debug build with static analysis enabled",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/tidy",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_COMPILER": "g++",
+                "ENABLE_SANITIZERS": "ON",
+                "ENABLE_CLANG_TIDY": "ON"
+            }
+        },
+        {
+            "name": "cpp23",
+            "displayName": "GCC 14 (C++23)",
+            "description": "For personal projects using latest standard features",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/gcc14",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_COMPILER": "g++-14",
+                "CMAKE_CXX_STANDARD": "23",
+                "ENABLE_SANITIZERS": "ON",
+                "ENABLE_CLANG_TIDY": "OFF"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "dev-debug",
+            "configurePreset": "ddbg"
+        },
+        {
+            "name": "dev-release",
+            "configurePreset": "drel"
+        },
+        {
+            "name": "dev-tidy",
+            "configurePreset": "dtidy"
+        },
+        {
+            "name": "cpp23",
+            "configurePreset": "cpp23"
+        }
+    ]
+}
